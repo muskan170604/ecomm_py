@@ -1,6 +1,27 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
+
+#create your models here
+STATE_CHOICES=(
+    ('Andaman & Nicobar Islands','Andaman & Nicobar Islands'),
+    ('Andhra Pradesh','Andhra Pradesh'),
+    ('Arunachal Pradesh','Arunachal Pradesh'),
+    ('Assam','Assam'),
+    ('Bihar','Bihar'),
+    ('Chandigarh','Chandigarh'),
+    ('Chattishgarh','Chattisgarh'),
+    ('Delhi','Delhi'),
+    ('Goa','Goa'),
+    ('Gujrat','Gujrat'),
+    ('Haryana','Haryana'),
+    ('Himachal Pradesh','Himachal Pradesh'),
+    ('Jammu & Kashmir','Jammu & Kashmir'),
+    ('Uttar Pradesh','Uttar Pradesh'),
+    ('Punjab','Punjab'),
+    ('Karnataka','Karnataka')
+)
 
 CATEGORY_CHOICES=(
     ('CR','Curd'),
@@ -24,3 +45,14 @@ class Product(models.Model):
     product_image=models.ImageField(upload_to='product')
     def __str__(self):
         return self.title
+    
+class Customer(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=200)
+    locality=models.CharField(max_length=200)
+    city=models.CharField(max_length=50)
+    mobile=models.IntegerField(default=0)
+    zipcode=models.IntegerField()
+    state=models.CharField(choices=STATE_CHOICES,max_length=100)
+    def __str__(self):
+        return self.name
