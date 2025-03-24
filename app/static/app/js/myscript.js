@@ -46,7 +46,6 @@ $('.remove-cart').click(function(){
             prod_id:id
         },
         success:function(data){
-
             document.getElementById("amount").innerText=data.amount
             document.getElementById("totalamount").innerText=data.totalamount
             eml.parentNode.parentNode.parentNode.parentNode.remove()
